@@ -14,6 +14,9 @@ ApplyByDate date not null,
 PRIMARY KEY (JobID)
 );
 
-
-
+CREATE TABLE ApplyForJob (
+JobID int,
+JobApplied ENUM ('Yes' , 'No'),
+FOREIGN KEY (JobID) REFERENCES JobSearch(JobID)
+);
 
