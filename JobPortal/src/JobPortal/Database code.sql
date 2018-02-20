@@ -2,16 +2,18 @@
 CREATE DATABASE JobPortal;
 
 CREATE TABLE JobSearch (
+JobID int AUTO_INCREMENT not null,
+JobTitle (100) not null,
 JobType varchar (250) not null,
-Location varchar (50) not null
+Location varchar (50) not null,
+JobDescription (250) not null,
+Sector (60) not null,
+CompName (150) not null,
+Salary DEC(8,2) not null DEFAULT 0,
+ApplyByDate date not null,
+PRIMARY KEY (JobID)
 );
-#Made up data to run queries#
 
-INSERT INTO JobSearch VALUES ('Electrician', 'Russia');
-INSERT INTO JobSearch VALUES ('Primary School Teacher', 'Ireland');
-INSERT INTO JobSearch VALUES ('FireFighter', 'USA');
-INSERT INTO JobSearch VALUES ('Nurse', 'Germany');
-INSERT INTO JobSearch VALUES ('Doctor', 'Japan');
-INSERT INTO JobSearch VALUES ('Zoo Keeper', 'France');
-INSERT INTO JobSearch VALUES ('Nurse', 'Spain');
-INSERT INTO JobSearch VALUES ('Lawyer', 'Belgium');
+
+
+
