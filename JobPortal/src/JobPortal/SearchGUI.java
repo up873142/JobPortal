@@ -9,7 +9,7 @@ package JobPortal;
  *
  * @author User
  */
-import java.awt.event.*;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -22,7 +22,24 @@ public class SearchGUI extends javax.swing.JFrame {
     private String uName = "Job_Portal";
     private String uPass = "Job_Portal";
     private String searchSql = "Select * from JOBS where";
-    private String filterSql = "";
+    private String filterBySectorConsumerServices;
+    private String filterBySectorFinance;
+    private String filterBySectorConstruction;
+    private String filterBySectorBasicIndustries;
+    private String filterBySectorPublicUtilities;
+    private String filterBySectorTransportation;
+    private String filterByJobTypeFullTime;
+    private String filterByJobTypePartTime;
+    private String filterByJobTypePermanent;
+    private String filterByJobTypeTemporary;
+    private String filterByJobTypeInternship;
+    private String filterByCountrySpain;
+    private String filterByCountryGermany;
+    private String filterByCountryFrance;
+    private String filterByCountryNorway;
+    private String filterByCountryGreece;
+    private String keyword = "''";
+
     private Connection con;
     private ResultSet rs;
     private Statement stmt;
@@ -60,46 +77,59 @@ public class SearchGUI extends javax.swing.JFrame {
         menuBar3 = new java.awt.MenuBar();
         menu5 = new java.awt.Menu();
         menu6 = new java.awt.Menu();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        searchFrame = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        button1 = new java.awt.Button();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
+        title = new javax.swing.JLabel();
+        uploadCVButton = new java.awt.Button();
+        signInButton = new javax.swing.JLabel();
+        searchFilters = new javax.swing.JPanel();
+        jobTypeLable = new javax.swing.JLabel();
+        partTimeCheckBox = new javax.swing.JCheckBox();
+        permanentCheckBox = new javax.swing.JCheckBox();
+        temporaryCheckBox = new javax.swing.JCheckBox();
+        internshipCheckBox = new javax.swing.JCheckBox();
+        jobSectorLable = new javax.swing.JLabel();
+        fullTimeCheckBox = new javax.swing.JCheckBox();
+        consumerServiceCheckBox = new javax.swing.JCheckBox();
+        financeCheckBox = new javax.swing.JCheckBox();
+        constructionCheckBox = new javax.swing.JCheckBox();
+        transportationCheckBox = new javax.swing.JCheckBox();
+        publicUtilitiesCheckBox = new javax.swing.JCheckBox();
+        basicIndustriesCheckBox = new javax.swing.JCheckBox();
+        countryLable = new javax.swing.JLabel();
+        spainCheckBox = new javax.swing.JCheckBox();
+        germanyCheckBox = new javax.swing.JCheckBox();
+        franceCheckBox = new javax.swing.JCheckBox();
+        norwayCheckBox = new javax.swing.JCheckBox();
+        greeceCheckBox = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        searchTextField = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        resultsBox1 = new javax.swing.JPanel();
+        jobTitleLable = new javax.swing.JLabel();
+        resultsJobTitleLable = new javax.swing.JLabel();
+        resultsJobTypeLable = new javax.swing.JLabel();
+        resultsSalaryLable = new javax.swing.JLabel();
+        resultsApplyByDateLable = new javax.swing.JLabel();
+        resultsCountryLable = new javax.swing.JLabel();
+        viewJobDetails = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        resultsBox2 = new javax.swing.JPanel();
+        jobTitleLable1 = new javax.swing.JLabel();
+        resultsJobTitleLable1 = new javax.swing.JLabel();
+        resultsJobTypeLable1 = new javax.swing.JLabel();
+        resultsSalaryLable1 = new javax.swing.JLabel();
+        resultsApplyByDateLable1 = new javax.swing.JLabel();
+        resultsCountryLable1 = new javax.swing.JLabel();
+        viewJobDetails1 = new javax.swing.JButton();
+        resultsBox3 = new javax.swing.JPanel();
+        jobTitleLable2 = new javax.swing.JLabel();
+        resultsJobTitleLable2 = new javax.swing.JLabel();
+        resultsJobTypeLable2 = new javax.swing.JLabel();
+        resultsSalaryLable2 = new javax.swing.JLabel();
+        resultsApplyByDateLable2 = new javax.swing.JLabel();
+        resultsCountryLable2 = new javax.swing.JLabel();
+        viewJobDetails2 = new javax.swing.JButton();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -121,22 +151,22 @@ public class SearchGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jInternalFrame1.setVisible(true);
+        searchFrame.setVisible(true);
 
-        jLabel1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel1.setText("Search Jobs ");
+        title.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        title.setText("Search Jobs ");
 
-        button1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        button1.setLabel("Upload your CV");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        uploadCVButton.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        uploadCVButton.setLabel("Upload your CV");
+        uploadCVButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                uploadCVButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel2.setText("Sign in");
-        jLabel2.setAlignmentY(0.0F);
+        signInButton.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        signInButton.setText("Sign in");
+        signInButton.setAlignmentY(0.0F);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -144,11 +174,11 @@ public class SearchGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
+                .addComponent(title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uploadCVButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,271 +186,269 @@ public class SearchGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(uploadCVButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(signInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel3.setText("Job Portal Application Heading ");
+        jobTypeLable.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jobTypeLable.setText("Job Type ");
 
-        jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel4.setText("Job Type ");
+        partTimeCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        partTimeCheckBox.setText("Part-time");
 
-        jCheckBox2.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox2.setText("Part-time");
+        permanentCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        permanentCheckBox.setText("Permanent ");
 
-        jCheckBox3.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox3.setText("Permanent ");
+        temporaryCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        temporaryCheckBox.setText("Temporary");
 
-        jCheckBox4.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox4.setText("Temporary");
+        internshipCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        internshipCheckBox.setText("Intership");
 
-        jCheckBox5.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox5.setText("Intership");
+        jobSectorLable.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jobSectorLable.setText("Job Sector");
 
-        jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel5.setText("Job Sector");
-
-        jCheckBox1.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox1.setText("Full-time ");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        fullTimeCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        fullTimeCheckBox.setText("Full-time ");
+        fullTimeCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                fullTimeCheckBoxActionPerformed(evt);
             }
         });
 
-        jCheckBox6.setText("Accountancy and Tax");
-
-        jCheckBox7.setText("Business");
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+        consumerServiceCheckBox.setText("Consumer Services");
+        consumerServiceCheckBox.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                consumerServiceCheckBoxStateChanged(evt);
+            }
+        });
+        consumerServiceCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
+                consumerServiceCheckBoxActionPerformed(evt);
             }
         });
 
-        jCheckBox8.setText("Construction ");
-        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+        financeCheckBox.setText("Finance");
+        financeCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox8ActionPerformed(evt);
+                financeCheckBoxActionPerformed(evt);
             }
         });
 
-        jCheckBox9.setText("Finance , Banking and Economy");
-
-        jCheckBox10.setText("Information Technology");
-
-        jCheckBox11.setText("HR and Recruitment ");
-
-        jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel6.setText("Country");
-
-        jCheckBox12.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox12.setText("Southampton");
-
-        jCheckBox13.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox13.setText("Winchester");
-        jCheckBox13.addActionListener(new java.awt.event.ActionListener() {
+        constructionCheckBox.setText("Construction ");
+        constructionCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox13ActionPerformed(evt);
+                constructionCheckBoxActionPerformed(evt);
             }
         });
 
-        jCheckBox14.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox14.setText("Chichester ");
+        transportationCheckBox.setText("Transportation");
+        transportationCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transportationCheckBoxActionPerformed(evt);
+            }
+        });
 
-        jCheckBox15.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox15.setText("Hamsphire");
+        publicUtilitiesCheckBox.setText("Public Utilities");
 
-        jCheckBox16.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jCheckBox16.setText("Bognor Regis");
+        basicIndustriesCheckBox.setText("Basic Industries");
+        basicIndustriesCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                basicIndustriesCheckBoxActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jCheckBox7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addComponent(jCheckBox11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        countryLable.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        countryLable.setText("Country");
+
+        spainCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        spainCheckBox.setText("Spain");
+
+        germanyCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        germanyCheckBox.setText("Germany");
+        germanyCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                germanyCheckBoxActionPerformed(evt);
+            }
+        });
+
+        franceCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        franceCheckBox.setText("France");
+
+        norwayCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        norwayCheckBox.setText("Norway");
+
+        greeceCheckBox.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        greeceCheckBox.setText("Greece");
+
+        javax.swing.GroupLayout searchFiltersLayout = new javax.swing.GroupLayout(searchFilters);
+        searchFilters.setLayout(searchFiltersLayout);
+        searchFiltersLayout.setHorizontalGroup(
+            searchFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fullTimeCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jobSectorLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(financeCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(searchFiltersLayout.createSequentialGroup()
+                .addGroup(searchFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(consumerServiceCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(constructionCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(basicIndustriesCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(publicUtilitiesCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(transportationCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox12, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(jCheckBox13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(searchFiltersLayout.createSequentialGroup()
+                .addGroup(searchFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jobTypeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(partTimeCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(permanentCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(temporaryCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(internshipCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(countryLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spainCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                    .addComponent(germanyCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(franceCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(norwayCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(greeceCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+        searchFiltersLayout.setVerticalGroup(
+            searchFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchFiltersLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jobSectorLable, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(consumerServiceCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox6)
+                .addComponent(financeCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox7)
+                .addComponent(constructionCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox8)
+                .addComponent(transportationCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox9)
+                .addComponent(basicIndustriesCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox10)
+                .addComponent(publicUtilitiesCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jobTypeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(fullTimeCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(partTimeCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(permanentCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
+                .addComponent(temporaryCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox5)
+                .addComponent(internshipCheckBox)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(countryLable, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox12)
+                .addComponent(spainCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox13)
+                .addComponent(germanyCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox14)
+                .addComponent(franceCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox15)
+                .addComponent(norwayCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox16)
+                .addComponent(greeceCheckBox)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTextField1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jTextField1.setText("Search");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchTextField.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        searchTextField.setText("Search");
+        searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusLost(evt);
+            }
+        });
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchTextFieldActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jButton1.setText("Find Jobs ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchButton.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        searchButton.setText("Find Jobs ");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchButtonActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jLabel7.setText("IT Industrial Placement ");
+        jobTitleLable.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jobTitleLable.setText("IT Industrial Placement ");
 
-        jLabel8.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel8.setText("Aldi ");
+        resultsJobTitleLable.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        resultsJobTitleLable.setText("Aldi ");
 
-        jLabel9.setText("Full Time ");
+        resultsJobTypeLable.setText("Full Time ");
 
-        jLabel10.setText("Salary : 18000 - 18500 $");
+        resultsSalaryLable.setText("Salary : 18000 - 18500 $");
 
-        jLabel11.setText("30 Apr 2018 ");
+        resultsApplyByDateLable.setText("30 Apr 2018 ");
 
-        jLabel12.setText("Southampton ");
+        resultsCountryLable.setText("Southampton ");
 
-        jButton2.setText("View ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        viewJobDetails.setText("View ");
+        viewJobDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                viewJobDetailsActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout resultsBox1Layout = new javax.swing.GroupLayout(resultsBox1);
+        resultsBox1.setLayout(resultsBox1Layout);
+        resultsBox1Layout.setHorizontalGroup(
+            resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsBox1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(resultsBox1Layout.createSequentialGroup()
+                            .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jobTitleLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(resultsJobTitleLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(18, 18, 18))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(resultsBox1Layout.createSequentialGroup()
+                            .addComponent(resultsJobTypeLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(55, 55, 55)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(resultsBox1Layout.createSequentialGroup()
+                        .addComponent(resultsApplyByDateLable, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(156, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsSalaryLable, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(resultsCountryLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsBox1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewJobDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+        resultsBox1Layout.setVerticalGroup(
+            resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsBox1Layout.createSequentialGroup()
+                .addComponent(jobTitleLable, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(resultsJobTitleLable, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsSalaryLable, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(resultsJobTypeLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsCountryLable, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(resultsApplyByDateLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(viewJobDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 154, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 168, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -434,29 +462,160 @@ public class SearchGUI extends javax.swing.JFrame {
             .addGap(0, 612, Short.MAX_VALUE)
         );
 
+        jobTitleLable1.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jobTitleLable1.setText("IT Industrial Placement ");
+
+        resultsJobTitleLable1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        resultsJobTitleLable1.setText("Aldi ");
+
+        resultsJobTypeLable1.setText("Full Time ");
+
+        resultsSalaryLable1.setText("Salary : 18000 - 18500 $");
+
+        resultsApplyByDateLable1.setText("30 Apr 2018 ");
+
+        resultsCountryLable1.setText("Southampton ");
+
+        viewJobDetails1.setText("View ");
+        viewJobDetails1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJobDetails1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout resultsBox2Layout = new javax.swing.GroupLayout(resultsBox2);
+        resultsBox2.setLayout(resultsBox2Layout);
+        resultsBox2Layout.setHorizontalGroup(
+            resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsBox2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(resultsBox2Layout.createSequentialGroup()
+                            .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jobTitleLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(resultsJobTitleLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18))
+                        .addGroup(resultsBox2Layout.createSequentialGroup()
+                            .addComponent(resultsJobTypeLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(55, 55, 55)))
+                    .addGroup(resultsBox2Layout.createSequentialGroup()
+                        .addComponent(resultsApplyByDateLable1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)))
+                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsSalaryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(resultsCountryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsBox2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewJobDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+        );
+        resultsBox2Layout.setVerticalGroup(
+            resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsBox2Layout.createSequentialGroup()
+                .addComponent(jobTitleLable1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultsJobTitleLable1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsSalaryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(resultsJobTypeLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsCountryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(resultsApplyByDateLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(viewJobDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jobTitleLable2.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jobTitleLable2.setText("IT Industrial Placement ");
+
+        resultsJobTitleLable2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        resultsJobTitleLable2.setText("Aldi ");
+
+        resultsJobTypeLable2.setText("Full Time ");
+
+        resultsSalaryLable2.setText("Salary : 18000 - 18500 $");
+
+        resultsApplyByDateLable2.setText("30 Apr 2018 ");
+
+        resultsCountryLable2.setText("Southampton ");
+
+        viewJobDetails2.setText("View ");
+        viewJobDetails2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJobDetails2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout resultsBox3Layout = new javax.swing.GroupLayout(resultsBox3);
+        resultsBox3.setLayout(resultsBox3Layout);
+        resultsBox3Layout.setHorizontalGroup(
+            resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsBox3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(resultsBox3Layout.createSequentialGroup()
+                            .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jobTitleLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(resultsJobTitleLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18))
+                        .addGroup(resultsBox3Layout.createSequentialGroup()
+                            .addComponent(resultsJobTypeLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(55, 55, 55)))
+                    .addGroup(resultsBox3Layout.createSequentialGroup()
+                        .addComponent(resultsApplyByDateLable2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)))
+                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsSalaryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(resultsCountryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsBox3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewJobDetails2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+        );
+        resultsBox3Layout.setVerticalGroup(
+            resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsBox3Layout.createSequentialGroup()
+                .addComponent(jobTitleLable2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultsJobTitleLable2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsSalaryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(resultsJobTypeLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resultsCountryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(resultsApplyByDateLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(viewJobDetails2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(15, 15, 15)))
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(resultsBox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(resultsBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(resultsBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(47, Short.MAX_VALUE))
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -465,42 +624,42 @@ public class SearchGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(searchTextField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(resultsBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(resultsBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(resultsBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+        javax.swing.GroupLayout searchFrameLayout = new javax.swing.GroupLayout(searchFrame.getContentPane());
+        searchFrame.getContentPane().setLayout(searchFrameLayout);
+        searchFrameLayout.setHorizontalGroup(
+            searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchFilters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+        searchFrameLayout.setVerticalGroup(
+            searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchFrameLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGroup(searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchFrameLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(searchFilters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -508,98 +667,249 @@ public class SearchGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jInternalFrame1)
+                .addComponent(searchFrame)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(searchFrame, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void uploadCVButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadCVButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_uploadCVButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
 
 
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchTextFieldActionPerformed
+    private void sectorFilter() {
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                String getValue = jTextField1.getText();
+        if (consumerServiceCheckBox.isSelected()
+                || publicUtilitiesCheckBox.isSelected()
+                || financeCheckBox.isSelected()
+                || constructionCheckBox.isSelected()
+                || transportationCheckBox.isSelected()
+                || basicIndustriesCheckBox.isSelected()
+                || publicUtilitiesCheckBox.isSelected()) {
+            ArrayList<String> sectors = new ArrayList<String>();
+            searchSql += "and( sector = ";
 
-                searchSql += " Job_Title = '" + getValue + "'"
-                        + " or Address = '" + getValue + "'"
-                        + " or Country = '" + getValue + "'"
-                        + " or Job_Description = '" + getValue + "'"
-                        + " or Sector = '" + getValue + "'"
-                        + " or Company_Name = '" + getValue + "'"
-                        + " or Salary = '" + getValue + "'"
-                        + filterSql;
-                //        + " or Job_ID = '" + getValue + "'" data type issue
-                //  + " or Apply_By_Date = '" + getValue + "'"; data type issue
-                try {
+            if (consumerServiceCheckBox.isSelected()) {
+                sectors.add("'Consumer Services'");
+            };
+            if (financeCheckBox.isSelected()) {
+                sectors.add("'Finance'");
+            };
+            if (constructionCheckBox.isSelected()) {
+                sectors.add("'construction'");
+            };
+            if (transportationCheckBox.isSelected()) {
+                sectors.add("'transportation'");
+            };
+            if (basicIndustriesCheckBox.isSelected()) {
+                sectors.add("'BasicIndustries'");
+            };
+            if (publicUtilitiesCheckBox.isSelected()) {
+                sectors.add("'publicUtilities'");
+            };
+            for (int i = 0; i < sectors.size(); i++) {
+                if (i < sectors.size() - 1) {
+                    searchSql += sectors.get(i) + " or sector = ";
+                } else {
+                    searchSql += sectors.get(i) + ")";
+                };
+            };
+        };
+    }
 
-                    stmt = con.createStatement();
-                    rs = stmt.executeQuery(searchSql);
+    private void jobTypeFilter() {
 
-                    if (rs.next()) {
-                        while (rs.next()) {
-                            int Job_ID = rs.getInt("Job_ID");
-                            String Job_Title = rs.getString("Job_Title");
-                            String Address = rs.getString("Address");
-                            String Country = rs.getString("Country");
-                            String Job_Description = rs.getString("Job_Description");
-                            String Sector = rs.getString("Sector");
-                            String Company_Name = rs.getString("Company_Name");
-                            String Salary = rs.getString("Salary");
-                            System.out.println(Job_ID + " " + Job_Title + " " + Address + " " + Country + " " + Job_Description + " " + Sector + " " + Company_Name + " " + Salary + " ");
-                        }
-                    } else {
-                        System.out.println("No results found!");
-                    }
+        if (fullTimeCheckBox.isSelected()
+                || partTimeCheckBox.isSelected()
+                || permanentCheckBox.isSelected()
+                || permanentCheckBox.isSelected()
+                || temporaryCheckBox.isSelected()
+                || internshipCheckBox.isSelected()) {
+            ArrayList<String> jobType = new ArrayList<String>();
 
-                } catch (SQLException err) {
-                    System.out.println(err.getMessage());
-                } finally {
-                    if (stmt != null) {
-                        try {
-                            stmt.close();
-                        } catch (SQLException ex) {
-                            System.out.println("Could not close query");
-                        }
-                    }
+            searchSql += "and( Job_Type = ";
+
+            if (fullTimeCheckBox.isSelected()) {
+                jobType.add("'FULL_TIME'");
+            };
+            if (partTimeCheckBox.isSelected()) {
+                jobType.add("'PART_TIME'");
+            };
+            if (permanentCheckBox.isSelected()) {
+                jobType.add("'PERMANENT'");
+            };
+            if (temporaryCheckBox.isSelected()) {
+                jobType.add("'TEMPORARY'");
+            };
+            if (internshipCheckBox.isSelected()) {
+                jobType.add("'INTERNSHIP'");
+            };
+            for (int i = 0; i < jobType.size(); i++) {
+                if (i < jobType.size() - 1) {
+                    searchSql += jobType.get(i) + " or job_Type = ";
+                } else {
+                    searchSql += jobType.get(i) + ")";
+                };
+            };
+        };
+    }
+
+    private void countryFilter() {
+        if (consumerServiceCheckBox.isSelected()
+                || spainCheckBox.isSelected()
+                || germanyCheckBox.isSelected()
+                || franceCheckBox.isSelected()
+                || norwayCheckBox.isSelected()
+                || greeceCheckBox.isSelected()) {
+
+            ArrayList<String> country = new ArrayList<String>();
+            searchSql += "and( country = ";
+            if (spainCheckBox.isSelected()) {
+                country.add("'Spain'");
+            };
+            if (germanyCheckBox.isSelected()) {
+                country.add("'Germany'");
+            };
+            if (franceCheckBox.isSelected()) {
+                country.add("'France'");
+            };
+            if (norwayCheckBox.isSelected()) {
+                country.add("'Norway'");
+            };
+            if (greeceCheckBox.isSelected()) {
+                country.add("'Greece'");
+            };
+            for (int i = 0; i < country.size(); i++) {
+                if (i < country.size() - 1) {
+                    searchSql += country.get(i) + " or country = ";
+                } else {
+                    searchSql += country.get(i) + ")";
+                };
+            };
+        };
+    }
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        searchSql += "( Job_Title = '" + keyword + "'"
+                + " or Job_Type = '" + keyword + "'" 
+                + " or Country = '" + keyword + "'"
+                + " or Job_Description = '" + keyword + "'"
+                + " or Sector = '" + keyword + "'"
+                + " or Company_Name = '" + keyword + "'"
+                + " or Salary = '" + keyword + "')";
+        
+        sectorFilter();
+        jobTypeFilter();
+        countryFilter();
+
+        search();
+
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    public void search() {
+        try {
+
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(searchSql);
+
+            if (rs.next()) {
+                while (rs.next()) {
+                    int Job_ID = rs.getInt("Job_ID");
+                    String Job_Title = rs.getString("Job_Title");
+                    String Job_Type = rs.getString("Job_Type");
+                    String Address = rs.getString("Address");
+                    String Country = rs.getString("Country");
+                    String Job_Description = rs.getString("Job_Description");
+                    String Sector = rs.getString("Sector");
+                    String Company_Name = rs.getString("Company_Name");
+                    String Salary = rs.getString("Salary");
+                    System.out.println(Job_ID + " " 
+                            + Job_Title + " "
+                            + Job_Type + " "
+                            + Address + " " 
+                            + Country + " "
+                            + Job_Description + " " 
+                            + Sector + " "
+                            + Company_Name + " " 
+                            + Salary + " ");
                 }
-                searchSql = "Select * from JOBS where";
-
+            } else {
+                System.out.println("No results found!");
             }
-        });
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException ex) {
+                System.out.println("Could not close query");
+            }
 
-    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        }
+        searchSql = "Select * from JOBS where";
+        keyword = "''";
+    }
+    private void viewJobDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobDetailsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox7ActionPerformed
+    }//GEN-LAST:event_viewJobDetailsActionPerformed
 
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+    private void germanyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_germanyCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
+    }//GEN-LAST:event_germanyCheckBoxActionPerformed
 
-    private void jCheckBox13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox13ActionPerformed
+    private void basicIndustriesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicIndustriesCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox13ActionPerformed
+    }//GEN-LAST:event_basicIndustriesCheckBoxActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void constructionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_constructionCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_constructionCheckBoxActionPerformed
+
+    private void financeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_financeCheckBoxActionPerformed
+
+    private void consumerServiceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consumerServiceCheckBoxActionPerformed
+
+    }//GEN-LAST:event_consumerServiceCheckBoxActionPerformed
+
+    private void fullTimeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullTimeCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fullTimeCheckBoxActionPerformed
+
+    private void transportationCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transportationCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transportationCheckBoxActionPerformed
+
+    private void viewJobDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobDetails1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewJobDetails1ActionPerformed
+
+    private void viewJobDetails2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobDetails2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewJobDetails2ActionPerformed
+
+    private void consumerServiceCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_consumerServiceCheckBoxStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consumerServiceCheckBoxStateChanged
+
+    private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
+        searchTextField.setText("");
+    }//GEN-LAST:event_searchTextFieldFocusGained
+
+    private void searchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusLost
+        keyword = searchTextField.getText();
+    }//GEN-LAST:event_searchTextFieldFocusLost
 
     /**
      * @param args the command line arguments
@@ -640,46 +950,24 @@ public class SearchGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JCheckBox basicIndustriesCheckBox;
+    private javax.swing.JCheckBox constructionCheckBox;
+    private javax.swing.JCheckBox consumerServiceCheckBox;
+    private javax.swing.JLabel countryLable;
+    private javax.swing.JCheckBox financeCheckBox;
+    private javax.swing.JCheckBox franceCheckBox;
+    private javax.swing.JCheckBox fullTimeCheckBox;
+    private javax.swing.JCheckBox germanyCheckBox;
+    private javax.swing.JCheckBox greeceCheckBox;
+    private javax.swing.JCheckBox internshipCheckBox;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jobSectorLable;
+    private javax.swing.JLabel jobTitleLable;
+    private javax.swing.JLabel jobTitleLable1;
+    private javax.swing.JLabel jobTitleLable2;
+    private javax.swing.JLabel jobTypeLable;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.Menu menu3;
@@ -689,5 +977,40 @@ public class SearchGUI extends javax.swing.JFrame {
     private java.awt.MenuBar menuBar1;
     private java.awt.MenuBar menuBar2;
     private java.awt.MenuBar menuBar3;
+    private javax.swing.JCheckBox norwayCheckBox;
+    private javax.swing.JCheckBox partTimeCheckBox;
+    private javax.swing.JCheckBox permanentCheckBox;
+    private javax.swing.JCheckBox publicUtilitiesCheckBox;
+    private javax.swing.JLabel resultsApplyByDateLable;
+    private javax.swing.JLabel resultsApplyByDateLable1;
+    private javax.swing.JLabel resultsApplyByDateLable2;
+    private javax.swing.JPanel resultsBox1;
+    private javax.swing.JPanel resultsBox2;
+    private javax.swing.JPanel resultsBox3;
+    private javax.swing.JLabel resultsCountryLable;
+    private javax.swing.JLabel resultsCountryLable1;
+    private javax.swing.JLabel resultsCountryLable2;
+    private javax.swing.JLabel resultsJobTitleLable;
+    private javax.swing.JLabel resultsJobTitleLable1;
+    private javax.swing.JLabel resultsJobTitleLable2;
+    private javax.swing.JLabel resultsJobTypeLable;
+    private javax.swing.JLabel resultsJobTypeLable1;
+    private javax.swing.JLabel resultsJobTypeLable2;
+    private javax.swing.JLabel resultsSalaryLable;
+    private javax.swing.JLabel resultsSalaryLable1;
+    private javax.swing.JLabel resultsSalaryLable2;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JPanel searchFilters;
+    private javax.swing.JInternalFrame searchFrame;
+    private javax.swing.JTextField searchTextField;
+    private javax.swing.JLabel signInButton;
+    private javax.swing.JCheckBox spainCheckBox;
+    private javax.swing.JCheckBox temporaryCheckBox;
+    private javax.swing.JLabel title;
+    private javax.swing.JCheckBox transportationCheckBox;
+    private java.awt.Button uploadCVButton;
+    private javax.swing.JButton viewJobDetails;
+    private javax.swing.JButton viewJobDetails1;
+    private javax.swing.JButton viewJobDetails2;
     // End of variables declaration//GEN-END:variables
 }
