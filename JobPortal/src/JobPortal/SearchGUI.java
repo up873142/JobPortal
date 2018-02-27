@@ -9,13 +9,37 @@ package JobPortal;
  *
  * @author User
  */
+import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 public class SearchGUI extends javax.swing.JFrame {
+
+    private String host = "jdbc:derby://localhost:1527/Job_Portal";
+    private String uName = "Job_Portal";
+    private String uPass = "Job_Portal";
+    private String searchSql = "Select * from JOBS where";
+    private String filterSql = "";
+    private Connection con;
+    private ResultSet rs;
+    private Statement stmt;
 
     /**
      * Creates new form NewJFrame
      */
     public SearchGUI() {
         initComponents();
+
+        try {
+
+            con = DriverManager.getConnection(host, uName, uPass);
+
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        }
     }
 
     /**
@@ -64,7 +88,6 @@ public class SearchGUI extends javax.swing.JFrame {
         jCheckBox16 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -193,7 +216,7 @@ public class SearchGUI extends javax.swing.JFrame {
         jCheckBox11.setText("HR and Recruitment ");
 
         jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel6.setText("Location ");
+        jLabel6.setText("Country");
 
         jCheckBox12.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
         jCheckBox12.setText("Southampton");
@@ -295,18 +318,10 @@ public class SearchGUI extends javax.swing.JFrame {
         );
 
         jTextField1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jTextField1.setText("Search by type");
+        jTextField1.setText("Search");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jTextField2.setText("Search by Location");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
             }
         });
 
@@ -425,19 +440,20 @@ public class SearchGUI extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(15, 15, 15)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,8 +466,7 @@ public class SearchGUI extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2))
+                    .addComponent(jTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -509,15 +524,61 @@ public class SearchGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                String getValue = jTextField1.getText();
+
+                searchSql += " Job_Title = '" + getValue + "'"
+                        + " or Address = '" + getValue + "'"
+                        + " or Country = '" + getValue + "'"
+                        + " or Job_Description = '" + getValue + "'"
+                        + " or Sector = '" + getValue + "'"
+                        + " or Company_Name = '" + getValue + "'"
+                        + " or Salary = '" + getValue + "'"
+                        + filterSql;
+                //        + " or Job_ID = '" + getValue + "'" data type issue
+                //  + " or Apply_By_Date = '" + getValue + "'"; data type issue
+                try {
+
+                    stmt = con.createStatement();
+                    rs = stmt.executeQuery(searchSql);
+
+                    if (rs.next()) {
+                        while (rs.next()) {
+                            int Job_ID = rs.getInt("Job_ID");
+                            String Job_Title = rs.getString("Job_Title");
+                            String Address = rs.getString("Address");
+                            String Country = rs.getString("Country");
+                            String Job_Description = rs.getString("Job_Description");
+                            String Sector = rs.getString("Sector");
+                            String Company_Name = rs.getString("Company_Name");
+                            String Salary = rs.getString("Salary");
+                            System.out.println(Job_ID + " " + Job_Title + " " + Address + " " + Country + " " + Job_Description + " " + Sector + " " + Company_Name + " " + Salary + " ");
+                        }
+                    } else {
+                        System.out.println("No results found!");
+                    }
+
+                } catch (SQLException err) {
+                    System.out.println(err.getMessage());
+                } finally {
+                    if (stmt != null) {
+                        try {
+                            stmt.close();
+                        } catch (SQLException ex) {
+                            System.out.println("Could not close query");
+                        }
+                    }
+                }
+                searchSql = "Select * from JOBS where";
+
+            }
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -619,7 +680,6 @@ public class SearchGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.Menu menu3;
