@@ -105,31 +105,7 @@ public class SearchGUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         searchTextField = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
-        resultsBox1 = new javax.swing.JPanel();
-        jobTitleLable = new javax.swing.JLabel();
-        resultsJobTitleLable = new javax.swing.JLabel();
-        resultsJobTypeLable = new javax.swing.JLabel();
-        resultsSalaryLable = new javax.swing.JLabel();
-        resultsApplyByDateLable = new javax.swing.JLabel();
-        resultsCountryLable = new javax.swing.JLabel();
-        viewJobDetails = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        resultsBox2 = new javax.swing.JPanel();
-        jobTitleLable1 = new javax.swing.JLabel();
-        resultsJobTitleLable1 = new javax.swing.JLabel();
-        resultsJobTypeLable1 = new javax.swing.JLabel();
-        resultsSalaryLable1 = new javax.swing.JLabel();
-        resultsApplyByDateLable1 = new javax.swing.JLabel();
-        resultsCountryLable1 = new javax.swing.JLabel();
-        viewJobDetails1 = new javax.swing.JButton();
-        resultsBox3 = new javax.swing.JPanel();
-        jobTitleLable2 = new javax.swing.JLabel();
-        resultsJobTitleLable2 = new javax.swing.JLabel();
-        resultsJobTypeLable2 = new javax.swing.JLabel();
-        resultsSalaryLable2 = new javax.swing.JLabel();
-        resultsApplyByDateLable2 = new javax.swing.JLabel();
-        resultsCountryLable2 = new javax.swing.JLabel();
-        viewJobDetails2 = new javax.swing.JButton();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -383,74 +359,6 @@ public class SearchGUI extends javax.swing.JFrame {
             }
         });
 
-        jobTitleLable.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jobTitleLable.setText("IT Industrial Placement ");
-
-        resultsJobTitleLable.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        resultsJobTitleLable.setText("Aldi ");
-
-        resultsJobTypeLable.setText("Full Time ");
-
-        resultsSalaryLable.setText("Salary : 18000 - 18500 $");
-
-        resultsApplyByDateLable.setText("30 Apr 2018 ");
-
-        resultsCountryLable.setText("Southampton ");
-
-        viewJobDetails.setText("View ");
-        viewJobDetails.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewJobDetailsActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout resultsBox1Layout = new javax.swing.GroupLayout(resultsBox1);
-        resultsBox1.setLayout(resultsBox1Layout);
-        resultsBox1Layout.setHorizontalGroup(
-            resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resultsBox1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(resultsBox1Layout.createSequentialGroup()
-                            .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jobTitleLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(resultsJobTitleLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18))
-                        .addGroup(resultsBox1Layout.createSequentialGroup()
-                            .addComponent(resultsJobTypeLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(55, 55, 55)))
-                    .addGroup(resultsBox1Layout.createSequentialGroup()
-                        .addComponent(resultsApplyByDateLable, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)))
-                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsSalaryLable, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(resultsCountryLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsBox1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewJobDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
-        );
-        resultsBox1Layout.setVerticalGroup(
-            resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resultsBox1Layout.createSequentialGroup()
-                .addComponent(jobTitleLable, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultsJobTitleLable, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsSalaryLable, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(resultsJobTypeLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(resultsBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsCountryLable, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(resultsApplyByDateLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(viewJobDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -462,156 +370,13 @@ public class SearchGUI extends javax.swing.JFrame {
             .addGap(0, 612, Short.MAX_VALUE)
         );
 
-        jobTitleLable1.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jobTitleLable1.setText("IT Industrial Placement ");
-
-        resultsJobTitleLable1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        resultsJobTitleLable1.setText("Aldi ");
-
-        resultsJobTypeLable1.setText("Full Time ");
-
-        resultsSalaryLable1.setText("Salary : 18000 - 18500 $");
-
-        resultsApplyByDateLable1.setText("30 Apr 2018 ");
-
-        resultsCountryLable1.setText("Southampton ");
-
-        viewJobDetails1.setText("View ");
-        viewJobDetails1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewJobDetails1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout resultsBox2Layout = new javax.swing.GroupLayout(resultsBox2);
-        resultsBox2.setLayout(resultsBox2Layout);
-        resultsBox2Layout.setHorizontalGroup(
-            resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resultsBox2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(resultsBox2Layout.createSequentialGroup()
-                            .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jobTitleLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(resultsJobTitleLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18))
-                        .addGroup(resultsBox2Layout.createSequentialGroup()
-                            .addComponent(resultsJobTypeLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(55, 55, 55)))
-                    .addGroup(resultsBox2Layout.createSequentialGroup()
-                        .addComponent(resultsApplyByDateLable1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)))
-                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsSalaryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(resultsCountryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsBox2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewJobDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
-        );
-        resultsBox2Layout.setVerticalGroup(
-            resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resultsBox2Layout.createSequentialGroup()
-                .addComponent(jobTitleLable1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultsJobTitleLable1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsSalaryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(resultsJobTypeLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(resultsBox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsCountryLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(resultsApplyByDateLable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(viewJobDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jobTitleLable2.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jobTitleLable2.setText("IT Industrial Placement ");
-
-        resultsJobTitleLable2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        resultsJobTitleLable2.setText("Aldi ");
-
-        resultsJobTypeLable2.setText("Full Time ");
-
-        resultsSalaryLable2.setText("Salary : 18000 - 18500 $");
-
-        resultsApplyByDateLable2.setText("30 Apr 2018 ");
-
-        resultsCountryLable2.setText("Southampton ");
-
-        viewJobDetails2.setText("View ");
-        viewJobDetails2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewJobDetails2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout resultsBox3Layout = new javax.swing.GroupLayout(resultsBox3);
-        resultsBox3.setLayout(resultsBox3Layout);
-        resultsBox3Layout.setHorizontalGroup(
-            resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resultsBox3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(resultsBox3Layout.createSequentialGroup()
-                            .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jobTitleLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(resultsJobTitleLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18))
-                        .addGroup(resultsBox3Layout.createSequentialGroup()
-                            .addComponent(resultsJobTypeLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(55, 55, 55)))
-                    .addGroup(resultsBox3Layout.createSequentialGroup()
-                        .addComponent(resultsApplyByDateLable2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)))
-                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsSalaryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(resultsCountryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(193, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsBox3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewJobDetails2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
-        );
-        resultsBox3Layout.setVerticalGroup(
-            resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resultsBox3Layout.createSequentialGroup()
-                .addComponent(jobTitleLable2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultsJobTitleLable2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsSalaryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(resultsJobTypeLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(resultsBox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resultsCountryLable2, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(resultsApplyByDateLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(viewJobDetails2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(resultsBox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(resultsBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(resultsBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(59, 59, 59)
+                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -627,15 +392,8 @@ public class SearchGUI extends javax.swing.JFrame {
                     .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                     .addComponent(searchTextField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(resultsBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(resultsBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(resultsBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout searchFrameLayout = new javax.swing.GroupLayout(searchFrame.getContentPane());
@@ -764,8 +522,7 @@ public class SearchGUI extends javax.swing.JFrame {
     }
 
     private void countryFilter() {
-        if (consumerServiceCheckBox.isSelected()
-                || spainCheckBox.isSelected()
+        if (spainCheckBox.isSelected()
                 || germanyCheckBox.isSelected()
                 || franceCheckBox.isSelected()
                 || norwayCheckBox.isSelected()
@@ -800,13 +557,13 @@ public class SearchGUI extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
         searchSql += "( Job_Title = '" + keyword + "'"
-                + " or Job_Type = '" + keyword + "'" 
+                + " or Job_Type = '" + keyword + "'"
                 + " or Country = '" + keyword + "'"
                 + " or Job_Description = '" + keyword + "'"
                 + " or Sector = '" + keyword + "'"
                 + " or Company_Name = '" + keyword + "'"
                 + " or Salary = '" + keyword + "')";
-        
+
         sectorFilter();
         jobTypeFilter();
         countryFilter();
@@ -816,13 +573,21 @@ public class SearchGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     public void search() {
+        System.out.println(searchSql);
         try {
 
             stmt = con.createStatement();
             rs = stmt.executeQuery(searchSql);
-
+            //testing
+            int counter = 0;
+            //testing
             if (rs.next()) {
                 while (rs.next()) {
+                    //testing
+                    counter++;
+                    //testing
+                    SearchResult result = new SearchResult();;
+
                     int Job_ID = rs.getInt("Job_ID");
                     String Job_Title = rs.getString("Job_Title");
                     String Job_Type = rs.getString("Job_Type");
@@ -832,15 +597,25 @@ public class SearchGUI extends javax.swing.JFrame {
                     String Sector = rs.getString("Sector");
                     String Company_Name = rs.getString("Company_Name");
                     String Salary = rs.getString("Salary");
-                    System.out.println(Job_ID + " " 
+
+                    result.jobTitleLable.setText(Job_Title);
+                    result.resultsJobTitleLable.setText(Company_Name);
+                    result.resultsJobTypeLable.setText(Job_Type);
+                    result.resultsApplyByDateLable.setText("fix me Hobo Jimmy the date isnt part of the query");
+                    result.resultsSalaryLable.setText(Salary);
+                    result.resultsCountryLable.setText(Country);
+
+                    //testing
+                    System.out.println(Job_ID + " "
                             + Job_Title + " "
                             + Job_Type + " "
-                            + Address + " " 
+                            + Address + " "
                             + Country + " "
-                            + Job_Description + " " 
+                            + Job_Description + " "
                             + Sector + " "
-                            + Company_Name + " " 
+                            + Company_Name + " "
                             + Salary + " ");
+                    //testing
                 }
             } else {
                 System.out.println("No results found!");
@@ -857,12 +632,8 @@ public class SearchGUI extends javax.swing.JFrame {
 
         }
         searchSql = "Select * from JOBS where";
-        keyword = "''";
-    }
-    private void viewJobDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobDetailsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewJobDetailsActionPerformed
 
+    }
     private void germanyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_germanyCheckBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_germanyCheckBoxActionPerformed
@@ -891,20 +662,12 @@ public class SearchGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_transportationCheckBoxActionPerformed
 
-    private void viewJobDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobDetails1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewJobDetails1ActionPerformed
-
-    private void viewJobDetails2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobDetails2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewJobDetails2ActionPerformed
-
     private void consumerServiceCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_consumerServiceCheckBoxStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_consumerServiceCheckBoxStateChanged
 
     private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
-        searchTextField.setText("");
+        //Testing
     }//GEN-LAST:event_searchTextFieldFocusGained
 
     private void searchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusLost
@@ -964,9 +727,6 @@ public class SearchGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel jobSectorLable;
-    private javax.swing.JLabel jobTitleLable;
-    private javax.swing.JLabel jobTitleLable1;
-    private javax.swing.JLabel jobTitleLable2;
     private javax.swing.JLabel jobTypeLable;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
@@ -981,24 +741,6 @@ public class SearchGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox partTimeCheckBox;
     private javax.swing.JCheckBox permanentCheckBox;
     private javax.swing.JCheckBox publicUtilitiesCheckBox;
-    private javax.swing.JLabel resultsApplyByDateLable;
-    private javax.swing.JLabel resultsApplyByDateLable1;
-    private javax.swing.JLabel resultsApplyByDateLable2;
-    private javax.swing.JPanel resultsBox1;
-    private javax.swing.JPanel resultsBox2;
-    private javax.swing.JPanel resultsBox3;
-    private javax.swing.JLabel resultsCountryLable;
-    private javax.swing.JLabel resultsCountryLable1;
-    private javax.swing.JLabel resultsCountryLable2;
-    private javax.swing.JLabel resultsJobTitleLable;
-    private javax.swing.JLabel resultsJobTitleLable1;
-    private javax.swing.JLabel resultsJobTitleLable2;
-    private javax.swing.JLabel resultsJobTypeLable;
-    private javax.swing.JLabel resultsJobTypeLable1;
-    private javax.swing.JLabel resultsJobTypeLable2;
-    private javax.swing.JLabel resultsSalaryLable;
-    private javax.swing.JLabel resultsSalaryLable1;
-    private javax.swing.JLabel resultsSalaryLable2;
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchFilters;
     private javax.swing.JInternalFrame searchFrame;
@@ -1009,8 +751,5 @@ public class SearchGUI extends javax.swing.JFrame {
     private javax.swing.JLabel title;
     private javax.swing.JCheckBox transportationCheckBox;
     private java.awt.Button uploadCVButton;
-    private javax.swing.JButton viewJobDetails;
-    private javax.swing.JButton viewJobDetails1;
-    private javax.swing.JButton viewJobDetails2;
     // End of variables declaration//GEN-END:variables
 }
