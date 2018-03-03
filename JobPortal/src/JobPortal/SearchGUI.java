@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package JobPortal;
 
 /**
  *
- * @author User
+ * @author 804653
+ * @version 0.0.1
  */
 import java.util.ArrayList;
 import java.sql.Connection;
@@ -79,9 +75,9 @@ public class SearchGUI extends javax.swing.JFrame {
         menu6 = new java.awt.Menu();
         searchFrame = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
-        uploadCVButton = new java.awt.Button();
         signInButton = new javax.swing.JLabel();
+        searchTextField = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
         searchFilters = new javax.swing.JPanel();
         jobTypeLable = new javax.swing.JLabel();
         partTimeCheckBox = new javax.swing.JCheckBox();
@@ -102,10 +98,8 @@ public class SearchGUI extends javax.swing.JFrame {
         franceCheckBox = new javax.swing.JCheckBox();
         norwayCheckBox = new javax.swing.JCheckBox();
         greeceCheckBox = new javax.swing.JCheckBox();
-        jPanel3 = new javax.swing.JPanel();
-        searchTextField = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane(resultsPanel);
+        resultsPanel = new javax.swing.JPanel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -129,20 +123,33 @@ public class SearchGUI extends javax.swing.JFrame {
 
         searchFrame.setVisible(true);
 
-        title.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        title.setText("Search Jobs ");
-
-        uploadCVButton.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        uploadCVButton.setLabel("Upload your CV");
-        uploadCVButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadCVButtonActionPerformed(evt);
-            }
-        });
-
         signInButton.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         signInButton.setText("Sign in");
         signInButton.setAlignmentY(0.0F);
+
+        searchTextField.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        searchTextField.setText("Search");
+        searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusLost(evt);
+            }
+        });
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextFieldActionPerformed(evt);
+            }
+        });
+
+        searchButton.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        searchButton.setText("Find Jobs ");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,24 +157,22 @@ public class SearchGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(uploadCVButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
                 .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(uploadCVButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(signInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(searchTextField)
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jobTypeLable.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
@@ -273,7 +278,7 @@ public class SearchGUI extends javax.swing.JFrame {
                     .addComponent(consumerServiceCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(constructionCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(basicIndustriesCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(publicUtilitiesCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(publicUtilitiesCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(transportationCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(searchFiltersLayout.createSequentialGroup()
@@ -284,7 +289,7 @@ public class SearchGUI extends javax.swing.JFrame {
                     .addComponent(temporaryCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(internshipCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(countryLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(spainCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                    .addComponent(spainCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(germanyCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(franceCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(norwayCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -294,7 +299,6 @@ public class SearchGUI extends javax.swing.JFrame {
         searchFiltersLayout.setVerticalGroup(
             searchFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchFiltersLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
                 .addComponent(jobSectorLable, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(consumerServiceCheckBox)
@@ -332,118 +336,130 @@ public class SearchGUI extends javax.swing.JFrame {
                 .addComponent(norwayCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(greeceCheckBox)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
-        searchTextField.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        searchTextField.setText("Search");
-        searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchTextFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                searchTextFieldFocusLost(evt);
-            }
-        });
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
-            }
-        });
-
-        searchButton.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        searchButton.setText("Find Jobs ");
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(47, Short.MAX_VALUE))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(searchTextField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
+        resultsPanel.setLayout(new javax.swing.BoxLayout(resultsPanel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(resultsPanel);
 
         javax.swing.GroupLayout searchFrameLayout = new javax.swing.GroupLayout(searchFrame.getContentPane());
         searchFrame.getContentPane().setLayout(searchFrameLayout);
         searchFrameLayout.setHorizontalGroup(
             searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(searchFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(searchFilters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchFrameLayout.createSequentialGroup()
+                    .addGap(164, 164, 164)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         searchFrameLayout.setVerticalGroup(
             searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchFrameLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchFrameLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(searchFilters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(searchFilters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(searchFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchFrameLayout.createSequentialGroup()
+                    .addGap(77, 77, 77)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(searchFrame)
-                .addContainerGap())
+            .addComponent(searchFrame)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchFrame, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(searchFrame)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void uploadCVButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadCVButtonActionPerformed
+    private void germanyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_germanyCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_uploadCVButtonActionPerformed
+    }//GEN-LAST:event_germanyCheckBoxActionPerformed
+
+    private void basicIndustriesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicIndustriesCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_basicIndustriesCheckBoxActionPerformed
+
+    private void transportationCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transportationCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transportationCheckBoxActionPerformed
+
+    private void constructionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_constructionCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_constructionCheckBoxActionPerformed
+
+    private void financeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_financeCheckBoxActionPerformed
+
+    private void consumerServiceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consumerServiceCheckBoxActionPerformed
+
+    }//GEN-LAST:event_consumerServiceCheckBoxActionPerformed
+
+    private void consumerServiceCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_consumerServiceCheckBoxStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consumerServiceCheckBoxStateChanged
+
+    private void fullTimeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullTimeCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fullTimeCheckBoxActionPerformed
+
+    /**
+     * Creates the SQL query from the suer inputs of the search screen and
+     * clears the displayed results.
+     */
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        searchSql += "( Job_Title = '" + keyword + "'"
+                + " or Job_Type = '" + keyword + "'"
+                + " or Country = '" + keyword + "'"
+                + " or Job_Description = '" + keyword + "'"
+                + " or Sector = '" + keyword + "'"
+                + " or Company_Name = '" + keyword + "'"
+                + " or Salary = '" + keyword + "')";
+
+        sectorFilter();
+        jobTypeFilter();
+        countryFilter();
+        resultsPanel.removeAll();
+        resultsPanel.updateUI();
+        search();
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
 
-
     }//GEN-LAST:event_searchTextFieldActionPerformed
+    /**
+     * Sets the keyword for the search to the user input once the focus is lost.
+     *
+     * @param evt
+     */
+    private void searchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusLost
+        keyword = searchTextField.getText();
+    }//GEN-LAST:event_searchTextFieldFocusLost
+
+    private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
+
+    }//GEN-LAST:event_searchTextFieldFocusGained
+/**
+ * 
+ * Adds to the SQL search string based on the check boxes selected for sector.
+ * 
+ */
     private void sectorFilter() {
 
         if (consumerServiceCheckBox.isSelected()
@@ -483,7 +499,11 @@ public class SearchGUI extends javax.swing.JFrame {
             };
         };
     }
-
+/**
+ * 
+ * Adds to the SQL search string based on the check boxes selected for job type.
+ * 
+ */
     private void jobTypeFilter() {
 
         if (fullTimeCheckBox.isSelected()
@@ -520,7 +540,11 @@ public class SearchGUI extends javax.swing.JFrame {
             };
         };
     }
-
+/**
+ * 
+ * Adds to the SQL search string based on the check boxes selected for country.
+ * 
+ */
     private void countryFilter() {
         if (spainCheckBox.isSelected()
                 || germanyCheckBox.isSelected()
@@ -554,43 +578,25 @@ public class SearchGUI extends javax.swing.JFrame {
             };
         };
     }
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-
-        searchSql += "( Job_Title = '" + keyword + "'"
-                + " or Job_Type = '" + keyword + "'"
-                + " or Country = '" + keyword + "'"
-                + " or Job_Description = '" + keyword + "'"
-                + " or Sector = '" + keyword + "'"
-                + " or Company_Name = '" + keyword + "'"
-                + " or Salary = '" + keyword + "')";
-
-        sectorFilter();
-        jobTypeFilter();
-        countryFilter();
-
-        search();
-
-    }//GEN-LAST:event_searchButtonActionPerformed
-
+/**
+ * 
+ * Runs the search SQL based on the string created from the user inputs 
+ * then displays the results on the GUI.
+ * 
+ */
     public void search() {
-        System.out.println(searchSql);
         try {
-
             stmt = con.createStatement();
             rs = stmt.executeQuery(searchSql);
-            //testing
-            int counter = 0;
-            //testing
+
             if (rs.next()) {
                 while (rs.next()) {
-                    //testing
-                    counter++;
-                    //testing
-                    SearchResult result = new SearchResult();;
+                    SearchResult result = new SearchResult();
 
                     int Job_ID = rs.getInt("Job_ID");
                     String Job_Title = rs.getString("Job_Title");
                     String Job_Type = rs.getString("Job_Type");
+                    java.util.Date Date = rs.getDate("APPLY_BY_DATE");
                     String Address = rs.getString("Address");
                     String Country = rs.getString("Country");
                     String Job_Description = rs.getString("Job_Description");
@@ -601,24 +607,17 @@ public class SearchGUI extends javax.swing.JFrame {
                     result.jobTitleLable.setText(Job_Title);
                     result.resultsJobTitleLable.setText(Company_Name);
                     result.resultsJobTypeLable.setText(Job_Type);
-                    result.resultsApplyByDateLable.setText("fix me Hobo Jimmy the date isnt part of the query");
+                    result.resultsApplyByDateLable.setText(Date.toString());
                     result.resultsSalaryLable.setText(Salary);
                     result.resultsCountryLable.setText(Country);
 
-                    //testing
-                    System.out.println(Job_ID + " "
-                            + Job_Title + " "
-                            + Job_Type + " "
-                            + Address + " "
-                            + Country + " "
-                            + Job_Description + " "
-                            + Sector + " "
-                            + Company_Name + " "
-                            + Salary + " ");
-                    //testing
+                    resultsPanel.add(result);
+                    resultsPanel.revalidate();
+                    resultsPanel.repaint();
+
                 }
             } else {
-                System.out.println("No results found!");
+                searchTextField.setText("no results found");
             }
 
         } catch (SQLException err) {
@@ -634,45 +633,6 @@ public class SearchGUI extends javax.swing.JFrame {
         searchSql = "Select * from JOBS where";
 
     }
-    private void germanyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_germanyCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_germanyCheckBoxActionPerformed
-
-    private void basicIndustriesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicIndustriesCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_basicIndustriesCheckBoxActionPerformed
-
-    private void constructionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_constructionCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_constructionCheckBoxActionPerformed
-
-    private void financeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_financeCheckBoxActionPerformed
-
-    private void consumerServiceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consumerServiceCheckBoxActionPerformed
-
-    }//GEN-LAST:event_consumerServiceCheckBoxActionPerformed
-
-    private void fullTimeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullTimeCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fullTimeCheckBoxActionPerformed
-
-    private void transportationCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transportationCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transportationCheckBoxActionPerformed
-
-    private void consumerServiceCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_consumerServiceCheckBoxStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_consumerServiceCheckBoxStateChanged
-
-    private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
-        //Testing
-    }//GEN-LAST:event_searchTextFieldFocusGained
-
-    private void searchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusLost
-        keyword = searchTextField.getText();
-    }//GEN-LAST:event_searchTextFieldFocusLost
 
     /**
      * @param args the command line arguments
@@ -724,8 +684,7 @@ public class SearchGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox greeceCheckBox;
     private javax.swing.JCheckBox internshipCheckBox;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jobSectorLable;
     private javax.swing.JLabel jobTypeLable;
     private java.awt.Menu menu1;
@@ -741,6 +700,7 @@ public class SearchGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox partTimeCheckBox;
     private javax.swing.JCheckBox permanentCheckBox;
     private javax.swing.JCheckBox publicUtilitiesCheckBox;
+    private javax.swing.JPanel resultsPanel;
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchFilters;
     private javax.swing.JInternalFrame searchFrame;
@@ -748,8 +708,6 @@ public class SearchGUI extends javax.swing.JFrame {
     private javax.swing.JLabel signInButton;
     private javax.swing.JCheckBox spainCheckBox;
     private javax.swing.JCheckBox temporaryCheckBox;
-    private javax.swing.JLabel title;
     private javax.swing.JCheckBox transportationCheckBox;
-    private java.awt.Button uploadCVButton;
     // End of variables declaration//GEN-END:variables
 }
