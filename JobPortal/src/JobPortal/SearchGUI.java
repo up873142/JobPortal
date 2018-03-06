@@ -610,15 +610,21 @@ public class SearchGUI extends javax.swing.JFrame {
                     result.resultsApplyByDateLable.setText(Date.toString());
                     result.resultsSalaryLable.setText(Salary);
                     result.resultsCountryLable.setText(Country);
+                    result.resultsSectorLable.setText(Sector);
+                    result.resultsJobDescriptionLable.setText(Job_Description);
 
                     resultsPanel.add(result);
                     resultsPanel.revalidate();
                     resultsPanel.repaint();
+                    
+                    
 
                 }
             } else {
                 searchTextField.setText("no results found");
             }
+            
+            
 
         } catch (SQLException err) {
             System.out.println(err.getMessage());
